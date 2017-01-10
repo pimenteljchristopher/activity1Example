@@ -36,7 +36,7 @@ app.all('*', function(req, res, next) {
 });
 app.post('/platform', function (req, res) {
  //Header Initialize
-    res.setHeader('Access-Control-Allow-Origin', 'http://the-ph.mybluemix.net:5000/');
+    res.setHeader('Access-Control-Allow-Origin', 'http://the-ph.mybluemix.net:3000/');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -46,9 +46,10 @@ app.post('/platform', function (req, res) {
 		  text: req.body.information,
 		  language: 'en' },
 		  function (err, response) {
-		    if (err)
-		      console.log('error:', err);
-       
+		    if (err){
+                console.log('error:', err);
+          res.send(err);
+        }
 		    else
 		    	 res.send(response);
 		      console.log(JSON.stringify(response, null, 2));
@@ -58,7 +59,7 @@ app.post('/platform', function (req, res) {
 app.get('/data', function (req, res) {
  //Header Initialize
 
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000/');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);

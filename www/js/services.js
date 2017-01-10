@@ -28,10 +28,15 @@ angular.module('starter.services', [])
         data:result
       })
       .success(function(data) {
-              return data.data;
+        if(data.hasOwnProperty('data')){
+           return data.data;
+        }
+        else return data.error;
+             
             })
             .error(function(data) {
                 console.log('Error: ' + data);
+                return data;
             });
       
     };

@@ -1,12 +1,20 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope,thephService) {
+.controller('DashCtrl', function($scope,thephService,$ionicLoading) {
+
 $scope.Math = window.Math;
   $scope.pushInformation = function(result){
+        $ionicLoading.show();
     var data = {'information':result};
     console.log(data);
     thephService.platform(data).then(function(result){
+          $ionicLoading.hide();
       console.log(result.data);
+      console.log(result);
+      if(result.data.hasOwnProperty('error')){
+        alert(result.data.error);
+
+      }
       $scope.data = result.data;
     });
   };
